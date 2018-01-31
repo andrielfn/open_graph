@@ -32,7 +32,7 @@ defmodule OpenGraph.Mixfile do
   # Type "mix help deps" for more examples and options
   defp deps do
     [
-      {:httpoison, "~> 0.11"},
+      {:httpoison, "~> 1.0"},
       {:ex_doc, "~> 0.11", only: :dev}
     ]
   end
