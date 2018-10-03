@@ -3,7 +3,7 @@ defmodule OpenGraphTest do
   doctest OpenGraph
 
   setup do
-    html = File.read!("#{File.cwd!}/test/fixtures/github.html")
+    html = File.read!("#{File.cwd!()}/test/fixtures/github.html")
     {:ok, html: html}
   end
 
@@ -13,8 +13,12 @@ defmodule OpenGraphTest do
     assert og.title == "Build software better, together"
     assert og.url == "https://github.com"
     assert og.site_name == "GitHub"
-    assert og.description == "GitHub is where people build software. More than 15 million people use GitHub to discover, fork, and contribute to over 38 million projects."
-    assert og.image == "https://assets-cdn.github.com/images/modules/open_graph/github-octocat.png"
+
+    assert og.description ==
+             "GitHub is where people build software. More than 15 million people use GitHub to discover, fork, and contribute to over 38 million projects."
+
+    assert og.image ==
+             "https://assets-cdn.github.com/images/modules/open_graph/github-octocat.png"
   end
 
   test "parses with empty given HTML" do
