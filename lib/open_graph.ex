@@ -27,11 +27,13 @@ defmodule OpenGraph do
   `{:error, reason}` otherwise.
   """
   def fetch(url) do
-    case HTTPoison.get(url, [], [follow_redirect: true]) do
+    case HTTPoison.get(url, [], follow_redirect: true) do
       {:ok, %HTTPoison.Response{status_code: 200, body: body}} ->
         {:ok, OpenGraph.parse(body)}
+
       {:ok, %HTTPoison.Response{status_code: 404}} ->
         {:error, "Not found :("}
+
       {:error, %HTTPoison.Error{reason: reason}} ->
         {:error, reason}
     end
@@ -46,11 +48,13 @@ defmodule OpenGraph do
   This functions returns an OpenGraph struct.
   """
   def parse(html) do
-    map = Regex.scan(@metatag_regex, html, capture: :all_but_first)
-    |> Enum.filter(&filter_og_metatags(&1))
-    |> Enum.map(&drop_og_prefix(&1))
-    |> Enum.into(%{}, fn [k, v] -> {k, v} end)
-    |> Enum.map(fn {key, value} -> {String.to_atom(key), value} end)
+    map =
+      @metatag_regex
+      |> Regex.scan(html, capture: :all_but_first)
+      |> Enum.filter(&filter_og_metatags(&1))
+      |> Enum.map(&drop_og_prefix(&1))
+      |> Enum.into(%{}, fn [k, v] -> {k, v} end)
+      |> Enum.map(fn {key, value} -> {String.to_atom(key), value} end)
 
     struct(OpenGraph, map)
   end
