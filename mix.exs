@@ -4,7 +4,7 @@ defmodule OpenGraph.Mixfile do
   def project do
     [
       app: :open_graph,
-      version: "0.0.3",
+      version: "0.0.4",
       elixir: "~> 1.8",
       build_embedded: Mix.env() == :prod,
       start_permanent: Mix.env() == :prod,

@@ -10,7 +10,7 @@ The package can be installed as:
 
 ```elixir
 def deps do
-  [{:open_graph, "~> 0.0.2"}]
+  [{:open_graph, "~> 0.0.4"}]
 end
 ```
 
