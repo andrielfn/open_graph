@@ -37,6 +37,9 @@ defmodule OpenGraph do
       {:ok, %HTTPoison.Response{status_code: 404}} ->
         {:error, "Not found :("}
 
+      {:ok, %HTTPoison.Response{status_code: status_code}} ->
+        {:error, "Error from HTTPoison, status code: #{status_code}"}
+
       {:error, %HTTPoison.Error{reason: reason}} ->
         {:error, reason}
     end
