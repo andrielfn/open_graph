@@ -31,6 +31,9 @@ defmodule OpenGraph do
       {:ok, %HTTPoison.Response{status_code: 200, body: body}} ->
         {:ok, OpenGraph.parse(body)}
 
+      {:ok, %HTTPoison.Response{status_code: 502}} ->
+        {:error, "Bad Gateway"}
+
       {:ok, %HTTPoison.Response{status_code: 404}} ->
         {:error, "Not found :("}
 
