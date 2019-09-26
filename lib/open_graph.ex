@@ -27,12 +27,21 @@ defmodule OpenGraph do
   `{:error, reason}` otherwise.
   """
   def fetch(url) do
-    case HTTPoison.get(url, [], follow_redirect: true) do
+    case HTTPoison.get(url, [], ssl: [{:versions, [:"tlsv1.2"]}], follow_redirect: true) do
       {:ok, %HTTPoison.Response{status_code: 200, body: body}} ->
         {:ok, OpenGraph.parse(body)}
 
+      {:ok, %HTTPoison.Response{status_code: 502}} ->
+        {:error, "Bad Gateway"}
+
       {:ok, %HTTPoison.Response{status_code: 404}} ->
         {:error, "Not found :("}
+
+      {:ok, %HTTPoison.Response{status_code: 505}} ->
+        {:error, "Error from HTTPoison, status code: 505"}
+
+      {:ok, %HTTPoison.Response{status_code: status_code}} ->
+        {:error, "Error from HTTPoison, status code: #{status_code}"}
 
       {:error, %HTTPoison.Error{reason: reason}} ->
         {:error, reason}
