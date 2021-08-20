@@ -3,11 +3,12 @@ defmodule OpenGraphTest do
   doctest OpenGraph
 
   setup do
-    html = File.read!("#{File.cwd!()}/test/fixtures/github.html")
-    {:ok, html: html}
+    github = File.read!("#{File.cwd!()}/test/fixtures/github.html")
+    nature = File.read!("#{File.cwd!()}/test/fixtures/nature.html")
+    {:ok, github: github, nature: nature}
   end
 
-  test "parses with valid OpenGraph metatags in the given HTML", %{html: html} do
+  test "parses with valid OpenGraph metatags in the given HTML", %{github: html} do
     og = OpenGraph.parse(html)
 
     assert og.title == "Build software better, together"
@@ -29,5 +30,16 @@ defmodule OpenGraphTest do
     assert og.site_name == nil
     assert og.description == nil
     assert og.image == nil
+  end
+
+  test "fetch despite 303 redirections", %{nature: html} do
+    og = OpenGraph.parse(html)
+
+    assert og.description == "Nature is the foremost international weekly scientific journal in the world and is the flagship journal for Nature Portfolio. It publishes the finest ..."
+    assert og.image == "http://media.springernature.com/lw630/nature-cms/uploads/cms/pages/2913/top_item_image/d41586-021-02261-8_19578828-705d6691a7215ead2ffecb4e0cfae7bc.jpg"
+    assert og.site_name == "Nature"
+    assert og.title == "Nature"
+    assert og.type == "website"
+    assert og.url == "https://www.nature.com/nature"
   end
 end
