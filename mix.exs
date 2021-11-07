@@ -1,55 +1,54 @@
 defmodule OpenGraph.Mixfile do
   use Mix.Project
 
+  @source_url "https://github.com/andrielfn/open_graph"
+  @version "0.0.4"
+
   def project do
     [
       app: :open_graph,
-      version: "0.0.4",
+      version: @version,
       elixir: "~> 1.8",
       build_embedded: Mix.env() == :prod,
       start_permanent: Mix.env() == :prod,
       deps: deps(),
-      description: description(),
+      docs: docs(),
       package: package()
     ]
   end
 
-  # Configuration for the OTP application
-  #
-  # Type "mix help compile.app" for more information
   def application do
     [applications: [:httpoison, :logger]]
   end
 
-  # Dependencies can be Hex packages:
-  #
-  #   {:mydep, "~> 0.3.0"}
-  #
-  # Or git/path repositories:
-  #
-  #   {:mydep, git: "https://github.com/elixir-lang/mydep.git", tag: "0.1.0"}
-  #
-  # Type "mix help deps" for more examples and options
   defp deps do
     [
       {:httpoison, "~> 1.5"},
-      {:ex_doc, "~> 0.11", only: :dev},
+      {:ex_doc, ">= 0.0.0", only: :dev, runtime: false},
       {:credo, "~> 0.10.0", only: [:dev, :test], runtime: false}
     ]
   end
 
-  defp description do
-    """
-    A Elixir wrapper for the Open Graph protocol.
-    """
-  end
-
   defp package do
     [
+      description: "A Elixir wrapper for the Open Graph protocol.",
       maintainers: ["Andriel Nuernberg"],
       licenses: ["MIT"],
       links: %{"GitHub" => "https://github.com/andrielfn/open_graph"},
       files: ~w(lib mix.exs README.md LICENSE)
+    ]
+  end
+
+  defp docs do
+    [
+      extras: [
+        "LICENSE.md": [title: "License"],
+        "README.md": [title: "Overview"]
+      ],
+      main: "readme",
+      source_url: @source_url,
+      source_ref: "#{@version}",
+      formatters: ["html"]
     ]
   end
 end

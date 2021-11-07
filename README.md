@@ -1,20 +1,28 @@
 # OpenGraph
 
+[![Module Version](https://img.shields.io/hexpm/v/open_graph.svg)](https://hex.pm/packages/open_graph)
+[![Hex Docs](https://img.shields.io/badge/hex-docs-lightgreen.svg)](https://hexdocs.pm/open_graph/)
+[![Total Download](https://img.shields.io/hexpm/dt/open_graph.svg)](https://hex.pm/packages/open_graph)
+[![License](https://img.shields.io/hexpm/l/open_graph.svg)](https://github.com/andrielfn/open_graph/blob/master/LICENSE.md)
+[![Last Updated](https://img.shields.io/github/last-commit/andrielfn/open_graph.svg)](https://github.com/andrielfn/open_graph/commits/master)
+
 A Elixir wrapper for the [Open Graph protocol](http://ogp.me).
 
 ## Installation
 
 The package can be installed as:
 
-1. Add `open_graph` to your list of dependencies in `mix.exs`:
+Add `:open_graph` to your list of dependencies in `mix.exs`:
 
 ```elixir
 def deps do
-  [{:open_graph, "~> 0.0.4"}]
+  [
+    {:open_graph, "~> 0.0.4"}
+  ]
 end
 ```
 
-2. Ensure `open_graph` is started before your application:
+Ensure `:open_graph` is started before your application:
 
 ```elixir
 def application do
@@ -37,12 +45,15 @@ iex> OpenGraph.fetch("https://github.com")
 You can also parse raw HTML:
 
 ```elixir
-iex(2)> OpenGraph.parse("<meta property=\"og:title\" content=\"Some title\">")
+iex> OpenGraph.parse("<meta property=\"og:title\" content=\"Some title\">")
 
 %OpenGraph{description: nil, image: nil, site_name: nil, title: "Some title",
  type: nil, url: nil}
 ```
 
-## License
+## Copyright and License
 
-OpenGraph Elixir wrapper source code is licensed under the MIT License.
+Copyright (c) 2016 Andriel Nuernberg
+
+This work is free. You can redistribute it and/or modify it under the
+terms of the MIT License. See the [LICENSE.md](./LICENSE.md) file for more details.
