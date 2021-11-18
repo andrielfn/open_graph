@@ -35,7 +35,7 @@ defmodule OpenGraph.Mixfile do
       maintainers: ["Andriel Nuernberg"],
       licenses: ["MIT"],
       links: %{"GitHub" => "https://github.com/andrielfn/open_graph"},
-      files: ~w(lib mix.exs README.md LICENSE)
+      files: ~w(lib mix.exs README.md LICENSE.md)
     ]
   end
 
