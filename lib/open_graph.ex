@@ -4,13 +4,12 @@ defmodule OpenGraph do
 
   The example above shows how to fetch the GitHub Open Graph rich objects.
 
-  ```
-  OpenGraph.fetch("https://github.com")
-  %OpenGraph{description: "GitHub is where people build software. More than 15 million...",
-  image: "https://assets-cdn.github.com/images/modules/open_graph/github-octocat.png",
-  site_name: "GitHub", title: "Build software better, together", type: nil,
-  url: "https://github.com"}
-  ```
+      iex> OpenGraph.fetch("https://github.com")
+      %OpenGraph{description: "GitHub is where people build software. More than 15 million...",
+      image: "https://assets-cdn.github.com/images/modules/open_graph/github-octocat.png",
+      site_name: "GitHub", title: "Build software better, together", type: nil,
+      url: "https://github.com"}
+
   """
 
   @metatag_regex ~r/<\s*meta\s(?=[^>]*?\bproperty\s*=\s*(?|"\s*([^"]*?)\s*"|'\s*([^']*?)\s*'|([^"'>]*?)(?=\s*\/?\s*>|\s\w+\s*=)))[^>]*?\bcontent\s*=\s*(?|"\s*([^"]*?)\s*"|'\s*([^']*?)\s*'|([^"'>]*?)(?=\s*\/?\s*>|\s\w+\s*=))[^>]*>/
