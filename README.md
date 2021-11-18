@@ -17,7 +17,7 @@ Add `:open_graph` to your list of dependencies in `mix.exs`:
 ```elixir
 def deps do
   [
-    {:open_graph, "~> 0.0.4"}
+    {:open_graph, "~> 0.0.5"}
   ]
 end
 ```
