@@ -27,11 +27,7 @@ defmodule OpenGraph do
   `{:error, reason}` otherwise.
   """
   def fetch(url) do
-    case HTTPoison.get(url, [],
-           ssl: [{:versions, [:"tlsv1.2"]}],
-           follow_redirect: true,
-           hackney: [{:force_redirect, true}]
-         ) do
+    case HTTPoison.get(url, [], ssl: [{:versions, [:"tlsv1.2"]}], follow_redirect: true, hackney: [{:force_redirect, true}]) do
       {:ok, %HTTPoison.Response{status_code: 200, body: body}} ->
         {:ok, OpenGraph.parse(body)}
 
