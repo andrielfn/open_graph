@@ -9,7 +9,6 @@ defmodule OpenGraph do
       image: "https://assets-cdn.github.com/images/modules/open_graph/github-octocat.png",
       site_name: "GitHub", title: "Build software better, together", type: nil,
       url: "https://github.com"}}
-
   """
 
   @metatag_regex ~r/<\s*meta\s(?=[^>]*?\bproperty\s*=\s*(?|"\s*([^"]*?)\s*"|'\s*([^']*?)\s*'|([^"'>]*?)(?=\s*\/?\s*>|\s\w+\s*=)))[^>]*?\bcontent\s*=\s*(?|"\s*([^"]*?)\s*"|'\s*([^']*?)\s*'|([^"'>]*?)(?=\s*\/?\s*>|\s\w+\s*=))[^>]*>/

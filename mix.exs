@@ -9,7 +9,6 @@ defmodule OpenGraph.Mixfile do
       app: :open_graph,
       version: @version,
       elixir: "~> 1.14",
-      build_embedded: Mix.env() == :prod,
       start_permanent: Mix.env() == :prod,
       deps: deps(),
       docs: docs(),
@@ -18,7 +17,7 @@ defmodule OpenGraph.Mixfile do
   end
 
   def application do
-    [applications: [:httpoison, :logger]]
+    [extra_applications: [:httpoison, :logger]]
   end
 
   defp deps do
